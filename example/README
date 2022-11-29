@@ -1,0 +1,76 @@
+FISPACTII output visualization and analysis
+Update: 27/9/2022
+qchen.astro@gmail.com
+
+Requirements:
+python package:
+- numpy
+- matplotlib
+- math
+- sys
+- os
+- xlsxwriter
+- pypact >= 1.3.5
+
+=== pypact ===
+- installation
+>> pip3 install pypact
+- check version
+>> pip3 list
+
+- if pip installed pypact has version < 1.3.5, install instead by git:
+>> git clone https://github.com/fispact/pypact
+>> cd pypact
+>> pip3 install .
+
+-tutorial:
+https://github.com/fispact/pypact
+
+=== uncertainty estimation based on pypactQC ===
+We developed a local new version named pypactQC.
+The package development is only for experienced python developers.
+The usage is:
+
+import pypactQC:
+>> sys.path.append(os.path.abspath(r'/home/chen/Documents/numerical/python/packages'))
+
+import input files:
+>> filename = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             '.', './data/EC/WCLL/inventory_10.out')
+
+For properties comparision:
+>> python3 check_pypact.py
+>> python3 check_pypactQC.py
+
+For a newbie, try to check some simple functions:
+1) get time step information 
+>> python3 get_times.py
+
+2) get nuclides information of a step
+>> python3 get_nuclides.py
+
+3) get properties of a nuclide:
+>> python3 get_nuclide_properties.py
+
+4) visualization of .out file:
+>> python3 plot_out.py
+
+5) visualization of .json file:
+>> python3 plot_json.py
+
+6) convert .out to .json
+>> fispactconverter.py example/test91.out example/test91.json
+
+=== Sophiscated usage === 
+For large number of input files, we need to use iteration loops.
+Give the input files with unique names for iterations e.g.
+./data/EC/HCPB/inventory_9.out
+./data/Limiter/WCLL/inventory_10.out
+
+Example;
+1) dump the data to .xlsx table
+>> python3 dump_nuclide_table.py
+2) plot figures
+>> python3 plot_evolution.py
+- DUMP = True : dump data to xlsx file without plotting figures
+- DUMP = False: plotting figures without dumping data to xlsx files
